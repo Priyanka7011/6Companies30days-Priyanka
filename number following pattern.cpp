@@ -27,3 +27,5 @@ string printMinNumberForPattern(string S){
         cout<<ans;
         
     }
+//We split the string at 'I' and then print numbers in descending order from there to the index where d begin
+//as we have to print in descending order we used stack .

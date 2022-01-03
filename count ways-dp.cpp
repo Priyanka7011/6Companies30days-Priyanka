@@ -29,8 +29,9 @@ class Solution{
 			return (int)dp[n];
 		}
 };
+/*
+we are storing no. of possible decoding ways in dp array for  substring from 0 to n length and then return the res of last 
+dp[n]
+time complexity and space complexity = O(n)
 
-
-//this approach is called sliding window
-// as the array can be in any order so that's why we have the second while loop
-//where we change the start index so we can consider middle subarrays as well.
+*/

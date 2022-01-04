@@ -1,36 +1,59 @@
 class Solution{
   public:
-    int minSubArrayLen(int target, vector<int>& nums) {
-        
-        int start=0,end=0;
-        int sum=0;
-        vector<int> length;
-        while(end<nums.size()){
-            sum+=nums[end];
-            while(sum>=target){
-                length.push_back(end-start+1);
-                sum-=nums[start];
-                start++;
-            }
-            
-            end++;
-        }
-        if(length.size()==0)
-            return 0;
-        
-        int min=100001;
-        for(auto a:length){
-            if(min>a)
-                min=a;
-        }
-        
-        return min;
-    }
+    string decodedString(string s){
+        // code here
+       stack<char> st;
+       for(int i=0;i<s.length();i++){
+           if(s[i]!=']'){
+               st.push(s[i]);
+           }else{
+               string ans="";
+               while(st.top()!='['){
+                   ans=st.top()+ans;
+                   st.pop();
+               }
+               st.pop();
+               string num="";
+               
+               while( (!st.empty()) && isdigit(st.top())){
+                   
+                   num+=st.top();
+                   st.pop();
+               }
+               reverse(num.begin(),num.end());
+               int rep=stoi(num);
+               //cout<<ans<<rep<<"\n";
+               while(rep--){
+                   //cout<<ans;
+                   for(int j=0;j<ans.length();j++){
+                       //cout<<ans[j];
+                       st.push(ans[j]);
+                   }
+               }
+           }
+       }
+       
+      string res="";
+      while(!st.empty()){
+          res=st.top()+res;
+          st.pop();
+      }
+      //cout<<res;
+      
+      return res;
        
        
 };
 
 /*
 
-sliding method is used
+if stack is _____________________
+            _|_b__|_c_|_a__|_c__|
+    
+    to print bcac
+    ans=ans+st.top()
+
+    but to print cacb
+    ans=st.top()+ans
+    
 */

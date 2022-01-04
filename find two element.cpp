@@ -1,59 +1,24 @@
 class Solution{
   public:
-    string decodedString(string s){
+    int *findTwoElement(int *arr, int n) {
         // code here
-       stack<char> st;
-       for(int i=0;i<s.length();i++){
-           if(s[i]!=']'){
-               st.push(s[i]);
-           }else{
-               string ans="";
-               while(st.top()!='['){
-                   ans=st.top()+ans;
-                   st.pop();
-               }
-               st.pop();
-               string num="";
-               
-               while( (!st.empty()) && isdigit(st.top())){
-                   
-                   num+=st.top();
-                   st.pop();
-               }
-               reverse(num.begin(),num.end());
-               int rep=stoi(num);
-               //cout<<ans<<rep<<"\n";
-               while(rep--){
-                   //cout<<ans;
-                   for(int j=0;j<ans.length();j++){
-                       //cout<<ans[j];
-                       st.push(ans[j]);
-                   }
-               }
-           }
-       }
-       
-      string res="";
-      while(!st.empty()){
-          res=st.top()+res;
-          st.pop();
-      }
-      //cout<<res;
-      
-      return res;
-       
+        vector<int> v(n+1,0);
+        int* ans=(int*)malloc(2*sizeof(int));
+        for(int i=0;i<n;i++){
+            v[arr[i]]++;
+        }
+        
+        for(int i=1;i<=n;i++){
+            if(v[i]==2){
+                ans[0]=i;
+            }
+            if(v[i]==0){
+                ans[1]=i;
+            }
+        }
+        
+        return ans;
+    }
        
 };
 
-/*
-
-if stack is _____________________
-            _|_b__|_c_|_a__|_c__|
-    
-    to print bcac
-    ans=ans+st.top()
-
-    but to print cacb
-    ans=st.top()+ans
-    
-*/

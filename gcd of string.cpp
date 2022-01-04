@@ -1,21 +1,11 @@
-class Solution {
-  public:
-    int findPosition(int n , int m , int k) {
+string gcdOfStrings(string str1, string str2) {
         
-    // n - k + 1 is number of positions
-    // before we reach beginning of circle
-    // If m is less than this value, then
-    // we can simply return (m-1)th position
-    if (m <= n - k + 1)
-        return m + k - 1;
- 
-    // Let us compute remaining items before
-    // we reach beginning.
-    m = m - (n - k + 1);
- 
-    // We compute m % n to skip all complete
-    // rounds. If we reach end, we return n
-    // else we return m % n
-    return (m % n == 0) ? n : (m % n);
+        string ans;
+        //return (str1+str2==str2+str1 ? gcd(str1.length(),str2.length()):"");
+        if(str1+str2==str2+str1){
+            ans= str1.substr(0,gcd(str1.length(),str2.length()));
+        }
+        
+        return ans;
+        
     }
-};

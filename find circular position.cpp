@@ -1,29 +1,18 @@
-string printMinNumberForPattern(string S){
-        // code here 
-        stack<int> st;
-        int count=1;
-        string ans;
+int findPosition(int n , int m , int k) {
         
-        for(int i=0;i<S.length();i++){
-            if(S[i]=='D'){
-                st.push(count);
-                count++;
-            }else{
-                st.push(count);
-                count++;
-                
-                while(!st.empty()){
-                    ans+=to_string(st.top());
-                    st.pop();
-                }
-            }
-        }
-        st.push(count);
-        while(!st.empty()){
-                    ans+=to_string(st.top());
-                    st.pop();
-                }
-        
-        cout<<ans;
-        
+    // n - k + 1 is number of positions
+    // before we reach beginning of circle
+    // If m is less than this value, then
+    // we can simply return (m-1)th position
+    if (m <= n - k + 1)
+        return m + k - 1;
+ 
+    // Let us compute remaining items before
+    // we reach beginning.
+    m = m - (n - k + 1);
+ 
+    // We compute m % n to skip all complete
+    // rounds. If we reach end, we return n
+    // else we return m % n
+    return (m % n == 0) ? n : (m % n);
     }

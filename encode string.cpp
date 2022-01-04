@@ -1,14 +1,23 @@
-class Solution {
-public:
-    string gcdOfStrings(string str1, string str2) {
-        
-        string ans;
-        //return (str1+str2==str2+str1 ? gcd(str1.length(),str2.length()):"");
-        if(str1+str2==str2+str1){
-            ans= str1.substr(0,gcd(str1.length(),str2.length()));
-        }
-        
-        return ans;
-        
-    }
-};
+string encode(string src)
+{     
+  //Your code here 
+  int count=1;
+  string ans="";
+  for(int i=1;i<src.length();i++){
+      if(src[i]==src[i-1]){
+          count++;
+      }
+      else{
+          ans+=src[i-1]+to_string(count);
+          count=1;
+          //cout<<src[i];
+      }
+      
+  }
+  ans+=src[src.length()-1]+to_string(count);
+  //cout<<ans;
+  
+  return ans;
+  
+  //cout<<ans;
+}  

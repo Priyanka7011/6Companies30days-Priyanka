@@ -1,24 +1,34 @@
 class Solution{
   public:
-    int *findTwoElement(int *arr, int n) {
-        // code here
-        vector<int> v(n+1,0);
-        int* ans=(int*)malloc(2*sizeof(int));
-        for(int i=0;i<n;i++){
-            v[arr[i]]++;
-        }
-        
-        for(int i=1;i<=n;i++){
-            if(v[i]==2){
-                ans[0]=i;
-            }
-            if(v[i]==0){
-                ans[1]=i;
-            }
-        }
-        
-        return ans;
-    }
+    	int CountWays(string str){
+		    // Code here
+		    if(str[0] == '0')
+				return 0;
+			int n = str.size();
+			
+			long long int mod = 1e9 + 7;
+			vector<long long int>dp(n+1, 0);
+			dp[0] = dp[1] = 1;
+			for(int i = 1; i < n; i++){
+				if(str[i] == '0' and str[i-1] > '2'){
+				    
+					return 0;
+				}
+				
+			}
+			for(int i = 2; i <= n; i++){
+				if(str[i-1] > '0')
+					dp[i] = dp[i-1];
+				if(str[i-2] == '1' or (str[i-2] == '2' and str[i-1] < '7')){
+				    	dp[i] +=dp[i-2];
+				    	
+				}
+				
+				dp[i] %= mod;
+			}
+			return (int)dp[n];
+		}
+
 };
 /*
 we are storing no. of possible decoding ways in dp array for  substring from 0 to n length and then return the res of last 
